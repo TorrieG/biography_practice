@@ -1,8 +1,9 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-public class Biography {
+
+public class BiographyGUI {
     public static void main(String[] args) {
 
         /**
@@ -35,52 +36,45 @@ public class Biography {
         Book{name='24 Hours in the Life of a Woman', tale='novella', page=80}
          */
 
-        Scanner input = new Scanner(System.in);
         List<Book> bookList = new ArrayList<>();
         String bookInfo = "";
-        System.out.println(Questions.askFirstName);
-        String firstName = input.next();
-        System.out.println(Questions.askLastName);
-        String lastName = input.next();
-        System.out.println(Questions.askCountry);
-        String country = input.next();
-        System.out.println(Questions.askIfAlive);
-        String isAlive = input.next();
+
+        String firstName = JOptionPane.showInputDialog(Questions.askFirstName);
+        String lastName = JOptionPane.showInputDialog(Questions.askLastName);
+        String country = JOptionPane.showInputDialog(Questions.askCountry);
+        String isAlive = JOptionPane.showInputDialog(Questions.askIfAlive);
+        String ageQuestion = "";
         if (isAlive.toUpperCase().startsWith("Y")) isAlive= "true";
         else isAlive = "false";
         int age = 0;
         if (isAlive.equals("true")) {
-            System.out.println(Questions.askAuthorsAge);
-            age = input.nextInt();
+            ageQuestion = JOptionPane.showInputDialog(Questions.askAuthorsAge);
+            age = Integer.parseInt(ageQuestion);
         }
         Author author = new Author(firstName, lastName, country, isAlive, age);
         do {
-            System.out.println(Questions.askToEnterBook);
-            bookInfo = input.next();
-            input.nextLine();
+            bookInfo = JOptionPane.showInputDialog(Questions.askToEnterBook);
 
             if (bookInfo.toUpperCase().startsWith("Y")) {
-
-                System.out.println(Questions.askBookName);
-                String name = input.nextLine();
-
-                System.out.println(Questions.askBookGenre);
-                String genre = input.next();
-
-                System.out.println(Questions.askHowManyPages);
-                String pages = input.next();
+                String name = JOptionPane.showInputDialog(Questions.askBookName);
+                String genre = JOptionPane.showInputDialog(Questions.askBookGenre);
+                String pages = JOptionPane.showInputDialog(Questions.askHowManyPages);
 
                 Book books = new Book(name, genre, pages);
                 bookList.add(books);
             }
+
         } while (bookInfo.toUpperCase().startsWith("Y"));
 
-        System.out.println("Author's information = " + author);
-        if (!bookList.isEmpty()) System.out.println("Author's books are as listed below:");
+        JOptionPane.showMessageDialog(null,"Author's information = "+author);
+        if (!bookList.isEmpty()) JOptionPane.showMessageDialog(null,"Author's books are as listed below:");
 
         for (Book book : bookList) {
-            System.out.println(book);
+            JOptionPane.showMessageDialog(null,book);
         }
+
+
+
 
 
     }
