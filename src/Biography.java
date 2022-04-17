@@ -46,8 +46,7 @@ public class Biography {
         String country = input.next();
         System.out.println(Questions.askIfAlive);
         String isAlive = input.next();
-        if (isAlive.toUpperCase().startsWith("Y")) isAlive= "true";
-        else isAlive = "false";
+        isAlive = (isAlive.toUpperCase().startsWith("Y")) ? "true" : "false";
         int age = 0;
         if (isAlive.equals("true")) {
             System.out.println(Questions.askAuthorsAge);

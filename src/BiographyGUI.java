@@ -44,8 +44,7 @@ public class BiographyGUI {
         String country = JOptionPane.showInputDialog(Questions.askCountry);
         String isAlive = JOptionPane.showInputDialog(Questions.askIfAlive);
         String ageQuestion = "";
-        if (isAlive.toUpperCase().startsWith("Y")) isAlive= "true";
-        else isAlive = "false";
+        isAlive = (isAlive.toUpperCase().startsWith("Y")) ? "true" : "false";
         int age = 0;
         if (isAlive.equals("true")) {
             ageQuestion = JOptionPane.showInputDialog(Questions.askAuthorsAge);
